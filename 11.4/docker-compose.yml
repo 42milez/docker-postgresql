@@ -1,0 +1,17 @@
+version: "3"
+services:
+  postgresql_11_4:
+    build:
+      context: "."
+      dockerfile: "./Dockerfile"
+    command: 'postgres -c config_file="/etc/postgresql.conf"'
+    container_name: "postgresql_11_4"
+    image: "postgresql_11_4"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "pgdata_11_4:/var/lib/postgresql/data"
+      - "./conf/postgresql.conf:/etc/postgresql.conf"
+volumes:
+  pgdata_11_4:
+    driver: "local"
